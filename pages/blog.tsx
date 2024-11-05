@@ -1,7 +1,13 @@
 import Link from "next/link";
 import Layout from "../components/Layout";
+import { FC } from "react";
 
-const PostLink = ({ title, slug }) => {
+interface PostLinkProps {
+  title: string;
+  slug: string;
+}
+
+const PostLink: FC<PostLinkProps> = ({ title, slug }) => {
   return (
     <li>
       <Link as={`/${slug}`} href={`/post?title=${title}`}>
@@ -11,7 +17,7 @@ const PostLink = ({ title, slug }) => {
   );
 };
 
-const Blog = () => {
+const Blog: FC = () => {
   return (
     <Layout title="My Blog">
       <ul>

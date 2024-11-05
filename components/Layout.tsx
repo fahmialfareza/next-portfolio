@@ -2,19 +2,26 @@ import Link from "next/link";
 import Head from "next/head";
 import Router from "next/router";
 import NProgress from "nprogress";
+import { ReactNode } from "react";
 
-Router.onRouteChangeStart = (url) => {
+interface LayoutProps {
+  children: ReactNode;
+  title: string;
+}
+
+// Setting up NProgress event handlers with TypeScript
+Router.events.on("routeChangeStart", (url: string) => {
   console.log(url);
   NProgress.start();
-};
+});
 
-Router.onRouteChangeComplete = () => NProgress.done();
-Router.onRouteChangeError = () => NProgress.done();
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
-const Layout = ({ children, title }) => (
+const Layout: React.FC<LayoutProps> = ({ children, title }) => (
   <div className="root">
     <Head>
-      <title>Next Portolio</title>
+      <title>{title}</title>
     </Head>
 
     <header>

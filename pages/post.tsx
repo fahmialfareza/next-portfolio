@@ -1,10 +1,15 @@
 import Layout from "../components/Layout";
-import { withRouter } from "next/router";
+import { withRouter, NextRouter } from "next/router";
+import { FC } from "react";
 
-const Post = ({ router }) => {
+interface PostProps {
+  router: NextRouter;
+}
+
+const Post: FC<PostProps> = ({ router }) => {
   return (
-    <Layout title={router.query.title}>
-      <p width={{ width: "80vw" }}>
+    <Layout title={router.query.title as string}>
+      <p style={{ width: "80vw" }}>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse impedit,
         maiores a natus quis omnis, quisquam perspiciatis modi quibusdam nam,
         facilis architecto dolores pariatur sed?
